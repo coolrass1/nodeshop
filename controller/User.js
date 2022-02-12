@@ -16,7 +16,7 @@ console.log(error)
 exports.SignIn = async (req, res) => {
 
     try {
-        console.log("signin")
+        console.log("signin  hh")
         const signeduser = await User.findOne({username:req.body.username})
         res.status(200).json({ data: signeduser })
     } catch (error) {
