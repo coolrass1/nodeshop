@@ -7,9 +7,6 @@ exports.Register = async (req, res) => {
     const signeduser = await User.findOne({ username: req.body.username });
     signeduser && res.status(405).json({ data: 'user already exit' });
     const hashedpassword = await bcrypt.hash(req.body.password, 10);
-    // Load hash from your password DB.
-    console.log(hashedpassword);
-    //const { email, username } = req.body;
 
     const user = await User.create({ ...req.body, password: hashedpassword });
     const token = generateAccessToken(user);
@@ -26,7 +23,6 @@ function generateAccessToken(user) {
 
 exports.SignIn = async (req, res) => {
   try {
-    console.log('signin  hh');
     const signeduser = await User.findOne({ username: req.body.username });
     const result = await bcrypt.compare(req.body.password, signeduser.password);
     const token = generateAccessToken(signeduser);

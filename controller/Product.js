@@ -1,39 +1,39 @@
-const Task = require('../Models/Task');
+const Product = require('../Models/Product');
 
-exports.getTasks = async (req, res) => {
+exports.getProducts = async (req, res) => {
   console.log(req.headers.authorization);
 
   try {
-    const data = await Task.find();
+    const data = await Product.find();
     res.status(201).json({ data });
   } catch (error) {
     console.log(error);
   }
 };
 
-exports.createTask = async (req, res) => {
+exports.createProduct = async (req, res) => {
   try {
-    const data = await Task.create(req.body);
+    const data = await Product.create(req.body);
     res.status(201).json({ data });
   } catch (error) {
     console.log(error);
   }
 };
 
-exports.getOneTask = async (req, res) => {
+exports.getOneProduct = async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await Task.findById(id);
+    const data = await Product.findById(id);
     res.status(201).json({ data });
   } catch (error) {
     console.log(error);
   }
 };
 
-exports.updateTask = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await Task.findByIdAndUpdate(id, req.body, {
+    const data = await Product.findByIdAndUpdate(id, req.body, {
       new: true,
     });
     res.status(201).json({ data });
@@ -42,10 +42,10 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-exports.deleteTask = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   const id = req.params.id;
   try {
-    const data = await Task.findByIdAndDelete(id);
+    const data = await Product.findByIdAndDelete(id);
     res.status(201).json({ data: `deleted ${data}` });
   } catch (error) {
     console.log(error);
